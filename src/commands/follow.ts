@@ -1,8 +1,8 @@
-import { Command } from "discord.js-commando";
+import { Client, Command, CommandoMessage } from "discord.js-commando";
 import { HypixelAPI } from "hypixel-api-v2";
 
 export default class FollowCommand extends Command {
-	constructor(client) {
+	constructor(client: Client) {
 		super(client, {
 			name: "follow",
 			group: "hypixel",
@@ -20,7 +20,8 @@ export default class FollowCommand extends Command {
 		});
 	}
 
-	async run(msg, args) {
+	async run(msg: CommandoMessage, args: string | object | string[], _: boolean): Promise<CommandoMessage | null> {
+		if (!process.env.HYPIXEL_API_KEY) return null;
 		const hypixel = new HypixelAPI(process.env.HYPIXEL_API_KEY);
 		const player = await hypixel.player(args[0]);
 		msg.reply(JSON.stringify(player));

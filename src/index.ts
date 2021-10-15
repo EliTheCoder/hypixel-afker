@@ -1,4 +1,4 @@
-import { Client, FriendlyError } from "discord.js-commando";
+const { Client, FriendlyError } = require("discord.js-commando");
 import { join } from "path";
 import { existsSync, writeFileSync } from "fs";
 import { oneLine } from "common-tags";
